@@ -14,5 +14,5 @@ ${browser}        chrome
 
 Email Verification
     [Documentation]             Test for email verification
-    [Tags]                      Email_Verification_TC
+    [Tags]                      Email_Verification_TC_2
     Check Email Verification Sent

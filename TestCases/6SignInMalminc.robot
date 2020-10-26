@@ -5,7 +5,7 @@ Resource       ../Resources/keywords.robot
 Library        SeleniumLibrary
 
 Suite Setup       Begin Web Test
-#Suite Teardown    End Web Test
+Suite Teardown    End Web Test
 
 *** Variables ***
 
@@ -16,14 +16,14 @@ ${browser}     chrome
 
 SignIn Malminc After Activating Account
     [Documentation]             Test for valid SignIN After Registering
-    [Tags]                      SignInAfterActivating_TC
+    [Tags]                      SignInAfterActivating_TC_6
     #SignIn Malminc With Invalid Credentials
     #SignIn Malminc With Empty Email
     SignIn Malminc With Valid Credentials
 
 Edit Username
     [Documentation]             Test for Edit Username
-    [Tags]                      TC_6
+    [Tags]                      TC_7
    # SignIn Malminc With Valid Credential
     Edit Username Only Numbers
     Edit Username Only SpecialCharacters
@@ -32,7 +32,7 @@ Edit Username
 
 Edit Mail
     [Documentation]             Test for Edit Mail
-    [Tags]                      TC_7
+    [Tags]                      TC_8
     Edit Email Only Numbers
     Edit Mail Only SpecialCharacters
     Edit Mail Empty
@@ -40,15 +40,12 @@ Edit Mail
 
 Edit Password
     [Documentation]             Test for Edit Mail
-    [Tags]                      TC_8
+    [Tags]                      TC_9
     Edit Password Invalid Length
     Edit Password Empty
     Edit Password Valid
 
-Sign Out
-    [Documentation]             Test for Sign Out
-    [Tags]                      TC_9
-    Click Sign Out
+
 
 
 

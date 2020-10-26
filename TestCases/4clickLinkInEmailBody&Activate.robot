@@ -17,7 +17,7 @@ ${browser}        chrome
 
 Click Email Link And Activate The Account
     [Documentation]             Test for activation link in email body
-    [Tags]                      Email_Link_TC
+    [Tags]                      Email_Link_TC_4
     Mazimize the Browser Window
     Activate Account With Invalid Verification Code
     Activate Account With valid Verification Code

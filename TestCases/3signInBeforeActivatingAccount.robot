@@ -16,5 +16,5 @@ ${browser}        chrome
 
 SignIn Malminc Before Activating Account
     [Documentation]             Test for valid SignIN After Registering
-    [Tags]                      SignInBeforeActivating_TC
+    [Tags]                      SignInBeforeActivating_TC_3
     SignIn Malminc With Valid Credentials Before Activating Account

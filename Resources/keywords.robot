@@ -79,8 +79,9 @@ Check Email Verification Sent
 
 Check Password Activation Link Sent To The Mail
     Get Email Body Content
-    ${BodyContentResetPwd} =      Get Variable Value    ${Body}
-    Should Contain        ${BodyContentResetPwd}         Please click the link below to restore your identification
+    ${BodyContent} =      Get Variable Value    ${Body}
+    Log to Console        ${BodyContent}
+    Should Contain        ${BodyContent}         Please click the link below to restore your identification
     Close Mailbox
 
 SignIn Malminc With Valid Credentials Before Activating Account
@@ -104,15 +105,15 @@ Get Activation Link And Verification Code From Email Body
 
 Get Activation Link For Reset Password From Email Body
     Get Email Body Content
-    ${BodyContentResetPwd} =        Get Variable Value             ${Body}
-    ${ActivationLinkPassword} =     Get Lines Matching Regexp      ${BodyContentResetPwd}       localhost/newPassword        partial_match=True
-    set suite variable      ${ActivationLinkPassword}
+    ${BodyContent} =        Get Variable Value             ${Body}
+    ${ActivationLinkResetPwd} =     Get Lines Matching Regexp      ${BodyContent}       localhost/newPassword        partial_match=True
+    set suite variable      ${ActivationLinkResetPwd}
 
 Go To Reset Password Page using Activation Link From Mail
     Get Activation Link For Reset Password From Email Body
-    ${ResetPasswordlink} =       Get Variable Value  ${ActivationLinkPassword}
+    ${ResetPasswordlink} =       Get Variable Value  ${ActivationLinkResetPwd}
     Go To                   ${ResetPasswordlink}
-    Execute Javascript              window.scrollTo(0,400)
+    Execute Javascript            window.scrollTo(0,400)
 
 Activate Account With Invalid Verification Code
     Get Activation Link And Verification Code From Email Body
@@ -164,7 +165,7 @@ SignIn Malminc With Valid Credentials
     SignIn Malminc
     sleep                           2s
     Input Text      name:email      bluestars0987@gmail.com
-    Input Text      name:password   123456
+    Input Text      name:password   1234567
     Click Button    name:submit
    # Execute Javascript              window.scrollTo(0,400)
     #Page Should Contain             Please enter the correct email and password
@@ -300,11 +301,12 @@ Restore Email Page Valid Email
 Restore Password Validation
     Restore Password Not Same with New Password
     Restore Password And New Password Empty
+    Restore Password And New Password Not 6 Characters
     Restore Password And New Password Valid
 
 Restore Password Not Same with New Password
    Input Text        name:password    123
-   Input Text        name:repeatpassword    1234
+   Input Text        name:repeatPassword    1234
    Click Button      name:submit
    Page Should Contain              Password must be the same as 'repeatPassword'
    Sleep             2s
@@ -314,20 +316,42 @@ Restore Password And New Password Empty
    Page Should Contain              Password is required
    Sleep             2s
 
-Restore Password And New Password Valid
+Restore Password And New Password Not 6 Characters
    Input Text        name:password    1234
-   Input Text        name:repeatpassword    1234
+   Input Text        name:repeatPassword    1234
+   Click Button      name:submit
+   Page Should Contain             Password must be at least 6 characters long
+   Sleep             2s
+
+Restore Password And New Password Valid
+   Input Text        name:password    1234567
+   Input Text        name:repeatPassword    1234567
    Click Button      name:submit
    Sleep             2s
 
 Click Sign Out
+   Verify Home Page
    Click Menu
    Sleep            2s
    Click Element    xpath://*[@id="myNav"]/div/form/button
-  # Click Button     value:sign out
+
+Click Manage Option After Sign Out
+   Sleep            2s
    Click Menu
    Sleep            2s
-   Click Element    xpath:/html/body/div[4]/div/button[1]
+   Click Element    xpath://*[@id="myNav"]/div/a[3]
+   Page Should Contain     We let new customers experience your company and bring marketing to new levels.
+
+Click Sign In With Edited Password
+   Sleep            2s
+   Click Menu
+   Sleep            2s
+   Click Element    xpath://*[@id="myNav"]/div/a[1]
+   Sleep            2s
+   Input Text      name:email      pinkstars0987@gmail.com
+   Input Text      name:password   password
+   Click Button    name:submit
+   Verify Manage/overview Page
 
 End Web Test
    Close Browser
