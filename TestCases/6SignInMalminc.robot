@@ -24,7 +24,6 @@ SignIn Malminc After Activating Account
 Edit Username
     [Documentation]             Test for Edit Username
     [Tags]                      TC_7
-   # SignIn Malminc With Valid Credential
     Edit Username Only Numbers
     Edit Username Only SpecialCharacters
     Edit Username Empty

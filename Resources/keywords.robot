@@ -165,7 +165,7 @@ SignIn Malminc With Valid Credentials
     SignIn Malminc
     sleep                           2s
     Input Text      name:email      bluestars0987@gmail.com
-    Input Text      name:password   1234567
+    Input Text      name:password   123456
     Click Button    name:submit
    # Execute Javascript              window.scrollTo(0,400)
     #Page Should Contain             Please enter the correct email and password
